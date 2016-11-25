@@ -12,6 +12,7 @@ onready var tiili_malli = get_node("tiili")
 onready var lauta_koko = lauta.get_texture().get_size()
 onready var tiili_koko = tiili_malli.get_texture().get_size()
 onready var soundit = get_node("soundit")
+var level_number = 1
 
 func _input(ev):
 	
@@ -34,6 +35,11 @@ func _fixed_process(delta):
 			tiilet.erase(tiili)
 			tiili.queue_free()
 			soundit.play("blomp")
+			print (tiilet.size())
+			if (!tiilet.size()):
+				level_number += 1
+				GeneroiKentta(level_number)
+				print("LÄPI"+str(level_number))
 	
 	var lauta_alue = Rect2(lauta.get_pos() - lauta_koko / 2, lauta_koko)
 	
@@ -41,7 +47,8 @@ func _fixed_process(delta):
 		var osuu_kohtaan = (pallo.get_pos().x - lauta.get_pos().x) / 10
 		pallo_suunta = Vector2(osuu_kohtaan, -PALLON_NOPEUS)
 		soundit.play("blomp2")
-			
+		#VenytaLautaa(1.5)
+		print ("OK"+str(pallo.get_pos().y))
 	if (pallo.get_pos().y < 10):
 		pallo_suunta = Vector2(pallo_suunta.x, PALLON_NOPEUS)
 	if (pallo.get_pos().x < 10):
@@ -53,18 +60,51 @@ func _fixed_process(delta):
 	
 	var pallo_sijainti = pallo.get_pos()
 	pallo.set_pos(pallo_sijainti + pallo_suunta)
-	
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	set_process_input(true)
 	set_fixed_process(true)
+	GeneroiKentta(1)
+
+const X_PALIKKA = 50
+const Y_PALIKKA = 20
+
+func GeneroiKentta(level_name):
 	
-	for i in range(100):
+	var kentta = LataaKenttaData(level_name)
+	print (kentta)
+	var rivi = 0
+	var solu = 0
+	#for i in range(10):
+	for i in range(kentta.length()):
+		var point = kentta.substr(i,1)
 		
-		var tiili = tiili_malli.duplicate()
-		print(tiili.set_pos(Vector2(50 + randi() % 20 * 50, 20 + randi() % 20 * 20)))
-		get_node(".").add_child(tiili)
+		if (point == "a"):
+			var tiili = tiili_malli.duplicate()
+			tiili.set_pos(Vector2(X_PALIKKA + solu * X_PALIKKA, Y_PALIKKA + rivi * Y_PALIKKA))
+			#tiili.set_pos(Vector2(X_PALIKKA + randi() % 20 * X_PALIKKA, Y_PALIKKA + randi() % 20 * Y_PALIKKA))
+			get_node(".").add_child(tiili)
 		#print(tiili.get_texture().get_name() + " " + str(tiili.get_pos().y) + " "+str(tiili.is_hidden()) + str(tiili.get_parent()))
 	
-		tiilet.append(tiili)
+			tiilet.append(tiili)
+		
+		solu += 1
+		
+		if (point == "\n"):
+			rivi += 1
+			solu = 0
+		
+		
+func LataaKenttaData(kentta):
+	var file = File.new()
+	file.open("res://levels/"+str(kentta), file.READ)
+	var sisalto = file.get_as_text()
+	file.close()
+	return sisalto
+
+func VenytaLautaa(pituus):
 	
+	lauta.scale(Vector2(pituus, 1))
+	lauta_koko.x *= lauta.get_scale().x
+	print (lauta.get_scale().x)
