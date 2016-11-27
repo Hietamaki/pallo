@@ -1,15 +1,27 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://peli.gd" type="Script" id=1]
-[ext_resource path="res://pallo.png" type="Texture" id=2]
-[ext_resource path="res://lauta.png" type="Texture" id=3]
-[ext_resource path="res://tiili.png" type="Texture" id=4]
-[ext_resource path="res://blomp.wav" type="Sample" id=5]
+[ext_resource path="res://images/ball.png" type="Texture" id=2]
+[ext_resource path="res://images/lauta.png" type="Texture" id=3]
+[ext_resource path="res://images/tiili.png" type="Texture" id=4]
+[ext_resource path="res://images/super.png" type="Texture" id=5]
+[ext_resource path="res://images/super2.png" type="Texture" id=6]
+[ext_resource path="res://blomp.wav" type="Sample" id=7]
+[ext_resource path="res://images/superball.png" type="Texture" id=8]
+
+[sub_resource type="CanvasItemShader" id=2]
+
+_code = { "fragment":"", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+
+[sub_resource type="CanvasItemMaterial" id=3]
+
+shader/shader = SubResource( 2 )
+shader/shading_mode = 0
 
 [sub_resource type="SampleLibrary" id=1]
 
-samples/blomp = { "db":0.0, "pitch":1.0, "sample":ExtResource( 5 ) }
-samples/blomp2 = { "db":0.0, "pitch":2.0, "sample":ExtResource( 5 ) }
+samples/blomp = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/blomp2 = { "db":0.0, "pitch":2.0, "sample":ExtResource( 7 ) }
 
 [node name="peli" type="Node2D"]
 
@@ -22,13 +34,25 @@ texture = ExtResource( 2 )
 
 [node name="lauta" type="Sprite" parent="."]
 
+material/material = SubResource( 3 )
 transform/pos = Vector2( 515, 558 )
 texture = ExtResource( 3 )
+modulate = Color( 0.546875, 0.26062, 0.26062, 1 )
 
 [node name="tiili" type="Sprite" parent="."]
 
 transform/pos = Vector2( -57.4425, 184.635 )
 texture = ExtResource( 4 )
+
+[node name="super1" type="Sprite" parent="."]
+
+transform/pos = Vector2( -108.526, 255.621 )
+texture = ExtResource( 5 )
+
+[node name="super2" type="Sprite" parent="."]
+
+transform/pos = Vector2( -72.5203, 255.082 )
+texture = ExtResource( 6 )
 
 [node name="soundit" type="SamplePlayer" parent="."]
 
@@ -46,5 +70,10 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
+
+[node name="superpallo" type="Sprite" parent="."]
+
+transform/pos = Vector2( -108.526, 255.621 )
+texture = ExtResource( 8 )
 
 
