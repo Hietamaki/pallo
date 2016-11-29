@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://peli.gd" type="Script" id=1]
 [ext_resource path="res://pallo.gd" type="Script" id=2]
@@ -7,39 +7,36 @@
 [ext_resource path="res://lauta.gd" type="Script" id=5]
 [ext_resource path="res://images/lauta.png" type="Texture" id=6]
 [ext_resource path="res://images/tiili.png" type="Texture" id=7]
-[ext_resource path="res://voima.gd" type="Script" id=8]
-[ext_resource path="res://images/super.png" type="Texture" id=9]
-[ext_resource path="res://images/super2.png" type="Texture" id=10]
-[ext_resource path="res://blomp.wav" type="Sample" id=11]
+[ext_resource path="res://blomp.wav" type="Sample" id=8]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8.52814, 10 )
 
-[sub_resource type="CanvasItemShader" id=2]
+[sub_resource type="CanvasItemShader" id=3]
 
 _code = { "fragment":"", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=4]
 
-shader/shader = SubResource( 2 )
+shader/shader = SubResource( 3 )
 shader/shading_mode = 0
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[sub_resource type="SampleLibrary" id=1]
+[sub_resource type="SampleLibrary" id=6]
 
-samples/blomp = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
-samples/blomp2 = { "db":0.0, "pitch":2.0, "sample":ExtResource( 11 ) }
+samples/blomp = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+samples/blomp2 = { "db":0.0, "pitch":2.0, "sample":ExtResource( 8 ) }
 
 [node name="peli" type="Node2D"]
 
@@ -49,7 +46,7 @@ script/script = ExtResource( 1 )
 
 transform/pos = Vector2( 494.241, 390.427 )
 input/pickable = false
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -63,37 +60,37 @@ texture = ExtResource( 3 )
 
 [node name="muoto" type="CollisionShape2D" parent="pallo"]
 
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="superpallo" type="Sprite" parent="pallo"]
 
-transform/pos = Vector2( -602.767, -134.806 )
+visibility/visible = false
 texture = ExtResource( 4 )
 
 [node name="lauta" type="KinematicBody2D" parent="."]
 
 transform/pos = Vector2( 524.554, 569.774 )
 input/pickable = false
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 3.88649, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
-collision/mask = 1
+collision/mask = 3
 collision/margin = 0.08
 script/script = ExtResource( 5 )
 
 [node name="muoto" type="CollisionShape2D" parent="lauta"]
 
 transform/scale = Vector2( 3.88649, 1 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
 [node name="kuva" type="Sprite" parent="lauta"]
 
-material/material = SubResource( 3 )
+material/material = SubResource( 4 )
 texture = ExtResource( 6 )
 modulate = Color( 0.546875, 0.26062, 0.26062, 1 )
 
@@ -101,7 +98,7 @@ modulate = Color( 0.546875, 0.26062, 0.26062, 1 )
 
 transform/pos = Vector2( -89.6543, 187.255 )
 input/pickable = false
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 2.44667, 0, 0, 0.868782, -7.70413, 0.873367 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -116,39 +113,14 @@ texture = ExtResource( 7 )
 
 transform/pos = Vector2( -7.70413, 0.873367 )
 transform/scale = Vector2( 2.44667, 0.868782 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 trigger = false
 _update_shape_index = 0
-
-[node name="voima" type="KinematicBody2D" parent="."]
-
-process/pause_mode = 1
-transform/pos = Vector2( -124.845, 122.406 )
-input/pickable = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-script/script = ExtResource( 8 )
-
-[node name="super1" type="Sprite" parent="voima"]
-
-transform/pos = Vector2( 4.91904, 18.7799 )
-texture = ExtResource( 9 )
-
-[node name="super2" type="Sprite" parent="voima"]
-
-transform/pos = Vector2( 40.9246, 18.2412 )
-texture = ExtResource( 10 )
-
-[node name="muoto" type="CollisionShape2D" parent="voima"]
-
-trigger = false
-_update_shape_index = -1
 
 [node name="soundit" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 1 )
+config/samples = SubResource( 6 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
