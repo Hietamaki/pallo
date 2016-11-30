@@ -42,7 +42,7 @@ samples/blomp2 = { "db":0.0, "pitch":2.0, "sample":ExtResource( 8 ) }
 
 script/script = ExtResource( 1 )
 
-[node name="pallo" type="RigidBody2D" parent="."]
+[node name="pallo" type="KinematicBody2D" parent="."]
 
 transform/pos = Vector2( 494.241, 390.427 )
 input/pickable = false
@@ -51,21 +51,7 @@ shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
-mode = 0
-mass = 1.0
-friction = 0.0
-bounce = 0.0
-gravity_scale = 0.0
-custom_integrator = true
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-velocity/linear = Vector2( 0, 0 )
-velocity/angular = 0.0
-damp_override/linear = -1.0
-damp_override/angular = -1.0
+collision/margin = 0.08
 script/script = ExtResource( 2 )
 
 [node name="kuva" type="Sprite" parent="pallo"]
