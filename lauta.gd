@@ -3,6 +3,7 @@ extends KinematicBody2D
 func _input(ev):
 	
 	if (ev.type==InputEvent.MOUSE_BUTTON):
+		get_parent().get_node("pallo").aloitus = false
 		print("Mouse Click/Unclick at: ",ev.pos)
 	elif (ev.type==InputEvent.MOUSE_MOTION):
 		set_pos(Vector2(ev.pos.x, get_pos().y))

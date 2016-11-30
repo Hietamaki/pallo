@@ -117,6 +117,29 @@ shape = SubResource( 5 )
 trigger = false
 _update_shape_index = 0
 
+[node name="tiili1" type="KinematicBody2D" parent="."]
+
+transform/pos = Vector2( -89.6543, 187.255 )
+input/pickable = false
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 2.44667, 0, 0, 0.868782, -7.70413, 0.873367 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+
+[node name="kuva" type="Sprite" parent="tiili1"]
+
+texture = ExtResource( 7 )
+
+[node name="muoto" type="CollisionShape2D" parent="tiili1"]
+
+transform/pos = Vector2( -7.70413, 0.873367 )
+transform/scale = Vector2( 2.44667, 0.868782 )
+shape = SubResource( 5 )
+trigger = false
+_update_shape_index = 0
+
 [node name="soundit" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
