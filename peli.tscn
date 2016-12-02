@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://peli.gd" type="Script" id=1]
 [ext_resource path="res://pallo.gd" type="Script" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://images/superball.png" type="Texture" id=4]
 [ext_resource path="res://lauta.gd" type="Script" id=5]
 [ext_resource path="res://images/lauta.png" type="Texture" id=6]
-[ext_resource path="res://images/tiili.png" type="Texture" id=7]
-[ext_resource path="res://blomp.wav" type="Sample" id=8]
+[ext_resource path="res://tiili.gd" type="Script" id=7]
+[ext_resource path="res://images/tiili.png" type="Texture" id=8]
+[ext_resource path="res://blomp.wav" type="Sample" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -35,8 +36,8 @@ extents = Vector2( 10, 10 )
 
 [sub_resource type="SampleLibrary" id=6]
 
-samples/blomp = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
-samples/blomp2 = { "db":0.0, "pitch":2.0, "sample":ExtResource( 8 ) }
+samples/blomp = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
+samples/blomp2 = { "db":0.0, "pitch":2.0, "sample":ExtResource( 9 ) }
 
 [node name="peli" type="Node2D"]
 
@@ -54,15 +55,16 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 2 )
 
-[node name="kuva" type="Sprite" parent="pallo"]
-
-texture = ExtResource( 3 )
-
 [node name="muoto" type="CollisionShape2D" parent="pallo"]
 
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="kuva" type="Sprite" parent="pallo"]
+
+transform/pos = Vector2( 0, 1 )
+texture = ExtResource( 3 )
 
 [node name="superpallo" type="Sprite" parent="pallo"]
 
@@ -104,35 +106,13 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
+script/script = ExtResource( 7 )
 
 [node name="kuva" type="Sprite" parent="tiili"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="muoto" type="CollisionShape2D" parent="tiili"]
-
-transform/pos = Vector2( -7.70413, 0.873367 )
-transform/scale = Vector2( 2.44667, 0.868782 )
-shape = SubResource( 5 )
-trigger = false
-_update_shape_index = 0
-
-[node name="tiili1" type="KinematicBody2D" parent="."]
-
-transform/pos = Vector2( -89.6543, 187.255 )
-input/pickable = false
-shapes/0/shape = SubResource( 5 )
-shapes/0/transform = Matrix32( 2.44667, 0, 0, 0.868782, -7.70413, 0.873367 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-
-[node name="kuva" type="Sprite" parent="tiili1"]
-
-texture = ExtResource( 7 )
-
-[node name="muoto" type="CollisionShape2D" parent="tiili1"]
 
 transform/pos = Vector2( -7.70413, 0.873367 )
 transform/scale = Vector2( 2.44667, 0.868782 )
