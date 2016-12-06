@@ -9,6 +9,8 @@ func _ready():
 	else:
 		get_node("super1").show()
 
+onready var lauta = get_node("../lauta")
+
 func _fixed_process(delta):
 	move(Vector2(0, 2))
 	
@@ -16,9 +18,12 @@ func _fixed_process(delta):
 		queue_free()
 	
 	if (is_colliding()):
-		if (get_collider().get_name() == "lauta"):
-			if (get_node("super1").is_hidden()):
-				get_node("../lauta").Venyta(1.1)
-			else:
-				get_node("../pallo").Supermode()
-			free()
+		if (get_collider() == lauta):
+			SuperEfekti()
+
+func SuperEfekti():
+	if (get_node("super1").is_hidden()):
+		lauta.Venyta(1.1)
+	else:
+		get_node("../pallo").Supermode()
+	queue_free()

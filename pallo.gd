@@ -22,16 +22,7 @@ func _fixed_process(delta):
 		var tormaaja = get_collider()
 		
 		if (tormaaja == lauta):
-			if (OS.get_unix_time() != aika_viimeksi):
-				soundit.play("blomp2")
-
-				var osuu_kohtaan = (get_pos().x - lauta.get_pos().x) / 10
-				pallo_suunta = Vector2(osuu_kohtaan, -pallo_suunta.y)
-				print (OS.get_unix_time())
-				aika_viimeksi = OS.get_unix_time()
-				lauta.set_shape_as_trigger(0, false)
-			else:
-				lauta.set_shape_as_trigger(0, true)
+			Pongauta()
 		else:
 			#oletetaan tiileksi, koska muuta ei ole
 			soundit.play("blomp")
@@ -47,6 +38,9 @@ func _fixed_process(delta):
 			
 			if (tormaaja.Osuma()):
 				tormaaja.free()
+				if (get_tree().get_nodes_in_group("tiilet").size() < 2):
+					get_node("/root/peli").GeneroiKentta()
+
 		
 	if (get_pos().y < 10):
 		pallo_suunta = Vector2(pallo_suunta.x, 4)
@@ -67,6 +61,20 @@ func _fixed_process(delta):
 		sijainti.y -= 20
 		set_pos(sijainti)
 	
+	if (OS.get_unix_time() != aika_viimeksi):
+		set_shape_as_trigger(0, false)
+
+func Pongauta():
+	
+	soundit.play("blomp2")
+	
+	var leveys = lauta.get_scale().x;
+	var osuu_kohtaan = (get_pos().x - lauta.get_pos().x) / leveys / 6
+	pallo_suunta = Vector2(osuu_kohtaan, -pallo_suunta.y)
+	aika_viimeksi = OS.get_unix_time()
+	print(aika_viimeksi)
+	set_shape_as_trigger(0, true)
+
 func Supermode(super_paalle = true):
 	if (super_paalle == false):
 		supervoima = false
