@@ -11,7 +11,7 @@ func _input(ev):
 		get_parent().get_node("pallo").aloitus = false
 		print("Mouse Click/Unclick at: ",ev.pos)
 	elif (ev.type==InputEvent.MOUSE_MOTION):
-		move_to(Vector2(ev.pos.x, get_pos().y))
+		move_to(Vector2(ev.pos.x, 570))
 	
 	#ei varsinaisesti kuulu tänne, mutta menköön
 	elif (ev.type==InputEvent.KEY):

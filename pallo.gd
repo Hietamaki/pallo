@@ -10,7 +10,7 @@ onready var soundit = get_node("../soundit")
 var pallo_suunta = Vector2(2, 4)
 var supervoima = false
 var aloitus = true
-var aika_viimeksi
+var aika_viimeksi = 0
 
 func _ready():
 	set_fixed_process(true)
@@ -58,22 +58,24 @@ func _fixed_process(delta):
 		move(pallo_suunta)
 	else:
 		var sijainti = lauta.get_pos()
-		sijainti.y -= 20
+		sijainti.y -= 25
 		set_pos(sijainti)
 	
-	if (OS.get_unix_time() != aika_viimeksi):
+	if (OS.get_ticks_msec() > aika_viimeksi + PALLO_KOSKEMATTOMANA_MSEC):
 		set_shape_as_trigger(0, false)
+
+const PALLO_KOSKEMATTOMANA_MSEC = 300
 
 func Pongauta():
 	
-	soundit.play("blomp2")
-	
-	var leveys = lauta.get_scale().x;
-	var osuu_kohtaan = (get_pos().x - lauta.get_pos().x) / leveys / 6
-	pallo_suunta = Vector2(osuu_kohtaan, -pallo_suunta.y)
-	aika_viimeksi = OS.get_unix_time()
-	print(aika_viimeksi)
-	set_shape_as_trigger(0, true)
+	if (OS.get_ticks_msec() > aika_viimeksi + PALLO_KOSKEMATTOMANA_MSEC):
+		soundit.play("blomp2")
+		
+		var leveys = lauta.get_scale().x;
+		var osuu_kohtaan = (get_pos().x - lauta.get_pos().x) / leveys / 6
+		pallo_suunta = Vector2(osuu_kohtaan, -pallo_suunta.y)
+		aika_viimeksi = OS.get_ticks_msec()
+		set_shape_as_trigger(0, true)
 
 func Supermode(super_paalle = true):
 	if (super_paalle == false):
