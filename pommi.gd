@@ -8,11 +8,8 @@ func _ready():
 	add_to_group("tiilet")
 
 func Osuma():
-	if (randi() % 2):
-		var voima = voima_luokka.instance()
-		voima.set_pos(get_pos())
-		print(get_node("/root/peli").get_name())
-		get_node("/root/peli").add_child(voima)
+	#http://docs.godotengine.org/en/stable/tutorials/ray-casting.html
 	
+	queue_free()
 	return true
 	

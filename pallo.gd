@@ -62,9 +62,9 @@ func _fixed_process(delta):
 		set_pos(sijainti)
 	
 	if (OS.get_ticks_msec() > aika_viimeksi + PALLO_KOSKEMATTOMANA_MSEC):
-		set_shape_as_trigger(0, false)
+		set_layer_mask_bit(0, true)
 
-const PALLO_KOSKEMATTOMANA_MSEC = 300
+const PALLO_KOSKEMATTOMANA_MSEC = 200
 
 func Pongauta():
 	
@@ -75,7 +75,7 @@ func Pongauta():
 		var osuu_kohtaan = (get_pos().x - lauta.get_pos().x) / leveys / 6
 		pallo_suunta = Vector2(osuu_kohtaan, -pallo_suunta.y)
 		aika_viimeksi = OS.get_ticks_msec()
-		set_shape_as_trigger(0, true)
+		set_layer_mask_bit(0, false)
 
 func Supermode(super_paalle = true):
 	if (super_paalle == false):

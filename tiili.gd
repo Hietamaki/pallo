@@ -12,5 +12,6 @@ func Osuma():
 		voima.set_pos(get_pos())
 		root.add_child(voima)
 	
+	queue_free()
 	return true
 	

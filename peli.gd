@@ -23,18 +23,28 @@ func GeneroiKentta(level_name = false):
 	print (kentta)
 	var rivi = 0
 	var solu = 0
+	var kommentti = false
 	
 	for i in range(kentta.length()):
 		var point = kentta.substr(i,1)
 		var ascii = point.to_ascii()[0]
 		
+		if (kommentti):
+			if (point == "\n"):
+				kommentti = false
+			
+			continue
+		
+		if (point == "#"):
+			kommentti = true
+			continue
+			
 		if (ascii > 32 and ascii < 127):
 			var tiili = tiili_malli.duplicate()
 			tiili.set_pos(Vector2(44 + solu * X_PALIKKA, Y_PALIKKA + rivi * Y_PALIKKA))
 			#tiili.set_pos(Vector2(X_PALIKKA + randi() % 20 * X_PALIKKA, Y_PALIKKA + randi() % 20 * Y_PALIKKA))
 			get_node("/root/peli").add_child(tiili)
 			
-			print (point)
 			if (point == "b"):
 				var imgdata = load('res://images/puna.png').get_data()
 				var src = load("res://pommi.gd")
