@@ -3,6 +3,8 @@ extends KinematicBody2D
 var voima_luokka= preload("res://voima.tscn")
 onready var root = get_node("/root/peli")
 
+var tuhoutumassa = false
+
 func _ready():
 	add_to_group("tiilet")
 

@@ -3,7 +3,8 @@ extends Node2D
 const X_PALIKKA = 50
 const Y_PALIKKA = 20
 
-onready var tiili_malli = get_node("tiili")
+onready var tiili_malli = preload("res://tiili.tscn")
+onready var pommi_malli = preload("res://pommi.tscn")
 onready var soundit = get_node("soundit")
 
 var level_number = 1
@@ -40,18 +41,16 @@ func GeneroiKentta(level_name = false):
 			continue
 			
 		if (ascii > 32 and ascii < 127):
-			var tiili = tiili_malli.duplicate()
-			tiili.set_pos(Vector2(44 + solu * X_PALIKKA, Y_PALIKKA + rivi * Y_PALIKKA))
-			#tiili.set_pos(Vector2(X_PALIKKA + randi() % 20 * X_PALIKKA, Y_PALIKKA + randi() % 20 * Y_PALIKKA))
-			get_node("/root/peli").add_child(tiili)
+			var tiili
 			
 			if (point == "b"):
-				var imgdata = load('res://images/puna.png').get_data()
-				var src = load("res://pommi.gd")
-				var texture = ImageTexture.new()
-				texture.create_from_image(imgdata)
-				tiili.get_node("kuva").set_texture(texture)
-				tiili.set_script(src)
+				tiili = pommi_malli.instance()
+			else:
+				tiili = tiili_malli.instance()
+			
+			tiili.set_pos(Vector2(44 + solu * X_PALIKKA, Y_PALIKKA + rivi * Y_PALIKKA))
+			get_node("/root/peli").add_child(tiili)
+			
 		solu += 1
 		
 		if (point == "\n"):

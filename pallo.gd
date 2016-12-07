@@ -36,10 +36,12 @@ func _fixed_process(delta):
 				else:
 					pallo_suunta = Vector2(-pallo_suunta.x, pallo_suunta.y)
 			
-			if (tormaaja.Osuma()):
-				tormaaja.free()
-				if (get_tree().get_nodes_in_group("tiilet").size() < 2):
-					get_node("/root/peli").GeneroiKentta()
+			if (tormaaja):
+				if (tormaaja.Osuma()):
+					tormaaja.free()
+			
+			if (get_tree().get_nodes_in_group("tiilet").size() == 0):
+				get_node("/root/peli").GeneroiKentta()
 
 		
 	if (get_pos().y < 10):
