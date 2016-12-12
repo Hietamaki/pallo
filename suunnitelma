@@ -1,5 +1,4 @@
-Ideat ei ole missään mielessä menossa kaikki toteutukseen, vaan niistä voi fii
-liksen mukaan hakea kadonnutta inspiraatiota.
+Erinäisiä koottuja ideoita:
 
 	- kierrepallot lautaa nopeasti liikuttamalla
 	- solmupallot:
@@ -17,4 +16,11 @@ liksen mukaan hakea kadonnutta inspiraatiota.
 	- kuluva superpallo
 		-> pallo tulessa joka roihuu ja asteittain teho loppuu
 
+	- upgradet lautaan (itemeitä ja pysyviä?):
+		- laskee milloin osuu seuraavan kerran lautaan (yhdistettynä hyödyllinen muissa)
+		- luo pystyseinä yms tiiliä joilla voi lukita palloja ylös
+		- kauko-ohjattava robotti, kun pallo on ylhäällä
 
+	- peli alkaa ampumalla kanuunalla tiilejä, pian upgradejen myötä saa ensimmäisen kimmokekuulan ja kimmokelaudan
+	- kehityspaja jossa voi löytää uusia päivityksiä kartoista löytyneiden mineraalien avulla
+	- mainauspeli. tiilet ovat soraa/kalliota mitä kaivetaan

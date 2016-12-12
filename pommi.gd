@@ -18,10 +18,11 @@ func Osuma():
 		if (!r.empty()):
 			var tiili =  r[0].collider
 			print (tiili.get_groups())
-			if ("tiilet" in tiili.get_groups() and !tiili.tuhoutumassa):
-				tuhoutumassa = true
-				tiili.Osuma()
-				print (tiili.get_name())
+			if ("tiilet" in tiili.get_groups()):
+				if (!tiili.tuhoutumassa):
+					tuhoutumassa = true
+					tiili.Osuma()
+					print (tiili.get_name())
 	
 	queue_free()
 	return true

@@ -60,7 +60,7 @@ func GeneroiKentta(level_name = false):
 func LataaKenttaData(kentta):
 	
 	var file = File.new()
-	file.open("res://levels/"+str(kentta), file.READ)
+	file.open("res://levels/"+str(kentta)+".lvl", file.READ)
 	var sisalto = file.get_as_text()
 	file.close()
 	return sisalto

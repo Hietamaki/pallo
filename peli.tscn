@@ -27,7 +27,7 @@ _code = { "fragment":"", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"
 shader/shader = SubResource( 3 )
 shader/shading_mode = 0
 
-[sub_resource type="SampleLibrary" id=6]
+[sub_resource type="SampleLibrary" id=5]
 
 samples/blomp = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
 samples/blomp2 = { "db":0.0, "pitch":2.0, "sample":ExtResource( 7 ) }
@@ -94,7 +94,7 @@ modulate = Color( 0.546875, 0.26062, 0.26062, 1 )
 [node name="soundit" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 6 )
+config/samples = SubResource( 5 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
